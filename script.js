@@ -2,22 +2,25 @@
 function Car(make, model) {
 	this.make = make;
 	this.model = model;
-	getMakeModel(){
-		string str = make+" "+model;
-		return str;
+}
+  Car.prototype.getMakeModel =function(){
+		 
+		return this.make+" "+this.model;;
 	}
 }
 
 function SportsCar(make, model, topSpeed) {
-	this.make = make;
-	this.model = model;
+	 Car.call(this,make,model);
 	this.topSpeed = topSpeed;
-	super.car(make,model);
-	getTopSpeed(){
-		return topSpeed;
-	}
-	
+	 
 }
+SportsCar.prototype=Object.create(Car.prototype);
+SportsCar.prototype.constructor = SportsCar;
+// fix constructor reference
+SportsCar.prototype.getTopSpeed = function(){
+	return this.topSpeed;
+}
+
 
 // Do not change the code below
 window.Car = Car;
